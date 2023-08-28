@@ -30,6 +30,11 @@ func dataSourceKibanaHost() *schema.Resource {
 				Computed:    true,
 				Description: "Password to use to connect to Kibana using basic auth",
 			},
+			"method": {
+				Type:        schema.TypeString,
+				Computed:    true,
+				Description: "basic or form",
+			},
 		},
 	}
 }
@@ -49,6 +54,10 @@ func dataSourceKibanaHostRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("url", url)
 	d.Set("username", username)
 	d.Set("password", password)
-
+	if conf.AuthMethod == kibana.AUTH_FORM {
+		d.Set("method", "form")
+	} else {
+		d.Set("method", "basic")
+	}
 	return nil
 }

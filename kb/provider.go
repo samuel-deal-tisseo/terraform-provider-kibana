@@ -33,6 +33,12 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("KIBANA_PASSWORD", nil),
 				Description: "Password to use to connect to Kibana using basic auth",
 			},
+			"auth_method": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("KIBANA_AUTH_METHOD", nil),
+				Description: "Authentication method, 'basic' or 'form'",
+			},
 			"cacert_files": {
 				Type:        schema.TypeSet,
 				Optional:    true,
@@ -88,6 +94,11 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	cacertFiles := convertArrayInterfaceToArrayString(d.Get("cacert_files").(*schema.Set).List())
 	username := d.Get("username").(string)
 	password := d.Get("password").(string)
+	auth_method_str := d.Get("auth_method").(string)
+	auth_method := kibana.AUTH_BASIC
+	if auth_method_str == "form" {
+		auth_method = kibana.AUTH_FORM
+	}
 	retry := d.Get("retry").(int)
 	waitBeforeRetry := d.Get("wait_before_retry").(int)
 
@@ -98,8 +109,9 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 
 	// Intialise connexion
 	cfg := kibana.Config{
-		Address: URL,
-		CAs:     cacertFiles,
+		Address:    URL,
+		CAs:        cacertFiles,
+		AuthMethod: auth_method,
 	}
 	if username != "" && password != "" {
 		cfg.Username = username
