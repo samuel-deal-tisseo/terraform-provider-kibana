@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     kibana = {
-      source = "disaster37/kibana"
+      source = "samuel-deal-tisseo/kibana"
       version = "1.0.0"
     }
   }

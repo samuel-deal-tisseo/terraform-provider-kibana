@@ -6,8 +6,8 @@
 package kb
 
 import (
-	kibana "github.com/disaster37/go-kibana-rest/v7"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	kibana "github.com/samuel-deal-tisseo/go-kibana-rest/v7"
 	log "github.com/sirupsen/logrus"
 )
 

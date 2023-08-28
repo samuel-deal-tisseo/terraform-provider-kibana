@@ -4,10 +4,10 @@ import (
 	"net/url"
 	"time"
 
-	kibana "github.com/disaster37/go-kibana-rest/v7"
-	"github.com/disaster37/go-kibana-rest/v7/kbapi"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/pkg/errors"
+	kibana "github.com/samuel-deal-tisseo/go-kibana-rest/v7"
+	"github.com/samuel-deal-tisseo/go-kibana-rest/v7/kbapi"
 	log "github.com/sirupsen/logrus"
 )
 

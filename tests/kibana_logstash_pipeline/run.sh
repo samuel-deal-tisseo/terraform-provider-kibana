@@ -7,7 +7,7 @@ provider_installation {
         include = ["registry.terraform.io/disaster37/kibana"]
     }
     direct {
-        exclude = ["registry.terraform.io/disaster37/kibana"]
+        exclude = ["registry.terraform.io/samuel-deal-tisseo/kibana"]
     }
 }
 EOT

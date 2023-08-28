@@ -5,10 +5,10 @@ import (
 	"os"
 	"testing"
 
-	kibana "github.com/disaster37/go-kibana-rest/v7"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/pkg/errors"
+	kibana "github.com/samuel-deal-tisseo/go-kibana-rest/v7"
 )
 
 func TestAccKibanaObject(t *testing.T) {
